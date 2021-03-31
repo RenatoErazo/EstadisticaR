@@ -9,22 +9,76 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## R Introducción a la estadística
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+En esta sección se desarrollan los ejercicios sobre el libro de estadística
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
+Cargar el dataset food_consumption
+```{r}
+  food_consumption <- readRDS("food_consumption.rds")
 ```
 
-## Including Plots
+Cargar librerías requeridas
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+library(dplyr)
+library(ggplot2)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+Cálculo de la media y mediana de consumo en Ecuador, Colombia y Perù
+
+```{r}
+#Filtrar por paìs
+Ec_consumo <- food_consumption %>% filter(country == "Ecuador")
+Co_consumo <- food_consumption %>% filter(country == "Colombia")
+Pe_consumo <- food_consumption %>% filter(country == "Peru")
+
+#Calcular la media y mediana por paìs
+
+mean(Ec_consumo$consumption)
+median(Ec_consumo$consumption)
+
+mean(Co_consumo$consumption)
+median(Co_consumo$consumption)
+
+mean(Pe_consumo$consumption)
+median(Pe_consumo$consumption)
+
+
+```
+
+Filtrar  por filas el consumo de comida (food_consumption) de Ecuador, Colombia y Perù.
+Agrupar por país
+Calcular la media y median de los kilogramos de comida consumida por persona al año en cada país. Llamar a las columnas media_consumo y mediana_consumo.
+
+```{r}
+# Filtrar datos de Ecuador, Colombia y Perù
+  food_consumption %>% filter(country %in% c("Ecuador", "Colombia","Peru")) %>%
+  # Group by country
+  group_by(country) %>%
+  # Get mean_consumption and median_consumption
+  summarize(media_consumo = mean(consumption),
+      mediana_consumo = median(consumption))
+
+```
+
+
+
+```{r}
+food_consumption %>%
+  # Filter for rice food category
+  filter(food_category == "rice") %>%
+  # Create histogram of co2_emission
+  ggplot(aes(x=co2_emission)) +geom_histogram()
+
+food_consumption %>% 
+  #filtar la comidad por categoría rice
+  filter(food_category == "rice")
+%>%
+  # Calcular la media y mediana de co2
+  
+  summarize(media_co2 = mean(co2_emission),mediana = median(co2_emission))
+```
+
