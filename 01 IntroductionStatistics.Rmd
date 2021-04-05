@@ -2,7 +2,10 @@
 title: "01 01 Introduction to statistics"
 author: "Renato Erazo"
 date: "31/3/2021"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -99,7 +102,9 @@ mean(ejemplos)
 data.frame(ejemplos) %>% ggplot(aes(x=ejemplos)) + geom_histogram(bins = 6)
 ```
 
-Si lanzamos los dados varias veces y sacamos su promedio este se asemja a una distribución normal, así el experimento sea de una distribución uniforme. Esta distribuciòn es conocida como sampling distribution
+Si lanzamos los dados varias veces y sacamos su promedio este se asemja a una distribución normal, así el experimento sea de una distribución uniforme. 
+
+##Esta distribuciòn es conocida como sampling distribution (Solo cuando los experimientos son aleatorios e independientes)
 
 
 ```{r}
@@ -130,7 +135,30 @@ data.frame(ejemplos) %>% ggplot(aes(x=ejemplos)) + geom_histogram(bins = 6)
 ```
 
 
+TCL el teoréma centra del límite utiliza esta lógica pero usando la desviación estándar
+
+```{r}
+ejemplos <- replicate(10,sample(dado, 5, replace = TRUE)%>% sd())
 
 
+data.frame(ejemplos) %>% ggplot(aes(x=ejemplos)) + geom_histogram(bins = 6)
+
+
+ejemplos <- replicate(100,sample(dado, 5, replace = TRUE)%>% sd())
+
+
+data.frame(ejemplos) %>% ggplot(aes(x=ejemplos)) + geom_histogram(bins = 6)
+
+ejemplos <- replicate(1000,sample(dado, 5, replace = TRUE)%>% sd())
+
+
+data.frame(ejemplos) %>% ggplot(aes(x=ejemplos)) + geom_histogram(bins = 6)
+
+
+ejemplos <- replicate(10000,sample(dado, 5, replace = TRUE)%>% sd())
+
+
+data.frame(ejemplos) %>% ggplot(aes(x=ejemplos)) + geom_histogram(bins = 6)
+```
 
 
