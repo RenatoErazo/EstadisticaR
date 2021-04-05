@@ -102,7 +102,7 @@ mean(ejemplos)
 data.frame(ejemplos) %>% ggplot(aes(x=ejemplos)) + geom_histogram(bins = 6)
 ```
 
-Si lanzamos los dados varias veces y sacamos su promedio este se asemja a una distribución normal, así el experimento sea de una distribución uniforme. 
+Si lanzamos los dados varias veces y sacamos su promedio este se asemeja a una distribución normal, así el experimento sea de una distribución uniforme. 
 
 ##Esta distribuciòn es conocida como sampling distribution (Solo cuando los experimientos son aleatorios e independientes)
 
