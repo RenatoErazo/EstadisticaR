@@ -81,4 +81,56 @@ food_consumption %>%
   
   summarize(media_co2 = mean(co2_emission),mediana = median(co2_emission))
 ```
+Teorema  Central del límite
+
+Cuando lanzamos los dados 5 veces en varias ocaciones el resultado es diferente así como su promedio
+
+```{r}
+dado <-c(1,2,3,4,5,6)
+
+ejemplos <- sample(dado, 5, replace = TRUE)
+mean(ejemplos)
+
+data.frame(ejemplos) %>% ggplot(aes(x=ejemplos)) + geom_histogram(bins = 6)
+
+ejemplos <- sample(dado, 5, replace = TRUE)
+mean(ejemplos)
+
+data.frame(ejemplos) %>% ggplot(aes(x=ejemplos)) + geom_histogram(bins = 6)
+```
+
+Si lanzamos los dados varias veces y sacamos su promedio este se asemja a una distribución normal, así el experimento sea de una distribución uniforme. Esta distribuciòn es conocida como sampling distribution
+
+
+```{r}
+
+ejemplos <- replicate(10,sample(dado, 5, replace = TRUE)%>% mean())
+
+
+data.frame(ejemplos) %>% ggplot(aes(x=ejemplos)) + geom_histogram(bins = 6)
+
+
+ejemplos <- replicate(100,sample(dado, 5, replace = TRUE)%>% mean())
+
+
+data.frame(ejemplos) %>% ggplot(aes(x=ejemplos)) + geom_histogram(bins = 6)
+
+ejemplos <- replicate(1000,sample(dado, 5, replace = TRUE)%>% mean())
+
+
+data.frame(ejemplos) %>% ggplot(aes(x=ejemplos)) + geom_histogram(bins = 6)
+
+
+ejemplos <- replicate(10000,sample(dado, 5, replace = TRUE)%>% mean())
+
+
+data.frame(ejemplos) %>% ggplot(aes(x=ejemplos)) + geom_histogram(bins = 6)
+
+
+```
+
+
+
+
+
 
