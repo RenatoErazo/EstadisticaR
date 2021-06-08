@@ -162,3 +162,43 @@ data.frame(ejemplos) %>% ggplot(aes(x=ejemplos)) + geom_histogram(bins = 6)
 ```
 
 
+## ================== Poisson ============================
+
+Es la probabiliad de cierto nùmero de eventos pasen en un perio de tiempo determinado.
+
+Ejemplos
+- Probalibilidad de que por lo menos 5 animales sean adoptados a la semana en una perrera.
+- Probailidad de que 12 personas lleguen a un restaurante por hora
+- Probabilidad de que existan menos de 20 terremotos en California por año
+
+Lamda = número promedio de eventos que ocuppern en un intervalo de tiempo
+
+##============================= Correlation
+
+
+Leer rds world_happiness
+
+
+```{r}
+world_happiness <- readRDS("world_happiness_sugar.rds")
+```
+
+Relationships between variables
+In this chapter, you'll be working with a dataset world_happiness containing results from the 2019 World Happiness Report. The report scores various countries based on how happy people in that country are. It also ranks each country on various societal aspects such as social support, freedom, corruption, and others. The dataset also includes the GDP per capita and life expectancy for each country.
+
+In this exercise, you'll examine the relationship between a country's life expectancy (life_exp) and happiness score (happiness_score) both visually and quantitatively. Both dplyr and ggplot2 are loaded and world_happiness is available.
+
+
+Create a scatterplot of happiness_score vs. life_exp using ggplot2.
+
+
+```{r}
+# Create a scatterplot of happiness_score vs. life_exp
+ggplot(world_happiness,aes(y=happiness_score,x=life_exp)) + geom_point()
+```
+
+
+
+
+
+
